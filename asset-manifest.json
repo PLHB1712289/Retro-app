@@ -1,23 +1,17 @@
 {
   "files": {
-    "main.css": "/retro-app/static/css/main.ab7136cd.chunk.css",
-    "main.js": "/retro-app/static/js/main.ca4f1a27.chunk.js",
-    "main.js.map": "/retro-app/static/js/main.ca4f1a27.chunk.js.map",
-    "runtime-main.js": "/retro-app/static/js/runtime-main.3f62b22e.js",
-    "runtime-main.js.map": "/retro-app/static/js/runtime-main.3f62b22e.js.map",
-    "static/js/2.d3b00d23.chunk.js": "/retro-app/static/js/2.d3b00d23.chunk.js",
-    "static/js/2.d3b00d23.chunk.js.map": "/retro-app/static/js/2.d3b00d23.chunk.js.map",
-    "static/js/3.0956bbe8.chunk.js": "/retro-app/static/js/3.0956bbe8.chunk.js",
-    "static/js/3.0956bbe8.chunk.js.map": "/retro-app/static/js/3.0956bbe8.chunk.js.map",
+    "main.js": "/retro-app/static/js/main.af100074.chunk.js",
+    "main.js.map": "/retro-app/static/js/main.af100074.chunk.js.map",
+    "runtime-main.js": "/retro-app/static/js/runtime-main.9f2e1e39.js",
+    "runtime-main.js.map": "/retro-app/static/js/runtime-main.9f2e1e39.js.map",
+    "static/js/2.24c856a1.chunk.js": "/retro-app/static/js/2.24c856a1.chunk.js",
+    "static/js/2.24c856a1.chunk.js.map": "/retro-app/static/js/2.24c856a1.chunk.js.map",
     "index.html": "/retro-app/index.html",
-    "static/css/main.ab7136cd.chunk.css.map": "/retro-app/static/css/main.ab7136cd.chunk.css.map",
-    "static/js/2.d3b00d23.chunk.js.LICENSE.txt": "/retro-app/static/js/2.d3b00d23.chunk.js.LICENSE.txt",
-    "static/media/logo.103b5fa1.svg": "/retro-app/static/media/logo.103b5fa1.svg"
+    "static/js/2.24c856a1.chunk.js.LICENSE.txt": "/retro-app/static/js/2.24c856a1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3f62b22e.js",
-    "static/js/2.d3b00d23.chunk.js",
-    "static/css/main.ab7136cd.chunk.css",
-    "static/js/main.ca4f1a27.chunk.js"
+    "static/js/runtime-main.9f2e1e39.js",
+    "static/js/2.24c856a1.chunk.js",
+    "static/js/main.af100074.chunk.js"
   ]
 }
