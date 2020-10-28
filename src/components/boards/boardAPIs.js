@@ -4,7 +4,6 @@ const boardAPI = {
   getAll: async (params) => {
     const url = "/board";
     const boardList = await axiosClient.get(url, { params });
-
     return boardList;
   },
 };
