@@ -52,7 +52,7 @@ const Header = ({ openForm }) => {
             noWrap
             className={classes.toolbarTitle}
           >
-            <Button href="/">{config.APP_NAME}</Button>
+            <Button href={config.APP_URL}>{config.APP_NAME}</Button>
           </Typography>
 
           <nav>

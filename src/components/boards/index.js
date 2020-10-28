@@ -27,7 +27,6 @@ const Board = () => {
   const [boardList, setBoardList] = useState([]);
 
   useEffect(() => {
-    console.log("Hello");
     const fetchBoardList = async () => {
       const boardList = await boardServices.getAll();
       setBoardList(boardList);
