@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline } from "@material-ui/core";
+import React, { useState } from "react";
+import Footer from "./components/footers";
+import Header from "./components/headers";
+
+import Board from "./components/boards";
+import FormDialog from "./components/formDialogs";
 
 function App() {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      {open ? (
+        <FormDialog isOpen={open} clickClose={() => handleClose()} />
+      ) : (
+        <></>
+      )}
+      <Header openForm={() => handleClickOpen()} />
+      <Board />
+      <Footer />
+    </React.Fragment>
   );
 }
 
