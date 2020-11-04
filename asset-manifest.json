@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/retro-app/static/js/main.9b1c31dc.chunk.js",
-    "main.js.map": "/retro-app/static/js/main.9b1c31dc.chunk.js.map",
+    "main.js": "/retro-app/static/js/main.478457e0.chunk.js",
+    "main.js.map": "/retro-app/static/js/main.478457e0.chunk.js.map",
     "runtime-main.js": "/retro-app/static/js/runtime-main.9f2e1e39.js",
     "runtime-main.js.map": "/retro-app/static/js/runtime-main.9f2e1e39.js.map",
     "static/js/2.867801a8.chunk.js": "/retro-app/static/js/2.867801a8.chunk.js",
@@ -15,6 +15,6 @@
   "entrypoints": [
     "static/js/runtime-main.9f2e1e39.js",
     "static/js/2.867801a8.chunk.js",
-    "static/js/main.9b1c31dc.chunk.js"
+    "static/js/main.478457e0.chunk.js"
   ]
 }
