@@ -26,6 +26,8 @@ const axiosClient = axios.create({
 // Handle request
 axiosClient.interceptors.request.use((config) => {
   // ..Handle token
+  const token = localStorage.getItem("token");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
@@ -39,7 +41,7 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     // ..Handle error
-    throw error;
+    return error;
   }
 );
 

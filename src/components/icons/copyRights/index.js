@@ -1,7 +1,6 @@
 import { Link, Typography } from "@material-ui/core";
 import React from "react";
-
-import config from "../../config";
+import config from "../../../config";
 
 const Copyright = () => {
   return (
