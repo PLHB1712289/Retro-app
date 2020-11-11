@@ -1,0 +1,61 @@
+import { makeStyles } from "@material-ui/core";
+
+export default makeStyles({
+  container: {
+    paddingTop: 30,
+    width: "100%",
+    height: "80vh",
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: "Arial",
+  },
+  mainArea: {
+    width: "50%",
+    marginTop: 10,
+    border: "2 solid black",
+    borderRadius: 5,
+    padding: 20,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  subArea: {
+    backgroundColor: "rgba(0,0,0,0.12)",
+    borderRadius: 10,
+    padding: 10,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  label: {
+    fontSize: 15,
+    fontWeight: 600,
+  },
+  inputField: {
+    width: 400,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: 10,
+  },
+  input: {
+    width: 250,
+    height: 30,
+    fontSize: 15,
+    border: "1px solid black",
+    borderRadius: 5,
+    padding: 10,
+  },
+  button: {
+    width: 180,
+    height: 30,
+    backgroundColor: "#2196f3",
+    color: "white",
+    borderRadius: 5,
+    margin: 5,
+    cursor: "pointer",
+    "&:hover": { backgroundColor: "#219603" },
+  },
+});

@@ -1,23 +1,49 @@
-import React, { useEffect, useState } from "react";
-import BoardList from "../components/boards/boardLists";
-import Header from "../components/headers";
-import RedirectCustom from "../components/redirectCustoms";
+import React, { useEffect } from "react";
+import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
+import BoardDetail from "../component/boards/boardDetail";
+import BoardList from "../component/boards/boardList";
+import Navbar from "../component/navbar";
+import Profile from "../component/profile";
+import ChangePassword from "../component/changePassword";
 
 const HomePage = () => {
-  const [redirectLogin, setRedirectLogin] = useState(false);
+  const history = useHistory();
+  const match = useRouteMatch();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    if (!token) history.push("/login");
+  });
 
-    if (!token) setRedirectLogin(true);
-  }, []);
-
+  console.log(match.path);
   return (
-    <RedirectCustom to="/login" isRedirect={redirectLogin}>
-      <Header />
+    <React.Fragment>
+      <Navbar />
 
-      <BoardList />
-    </RedirectCustom>
+      <Switch>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+
+        <Route path="/change-password">
+          <ChangePassword />
+        </Route>
+
+        <Route path="/board/:idBoard">
+          <BoardDetail />
+        </Route>
+
+        <Route path="/" exact>
+          <BoardList />
+        </Route>
+
+        <Route>
+          <div style={{ fontSize: 50, textAlign: "center" }}>
+            404 - Not found
+          </div>
+        </Route>
+      </Switch>
+    </React.Fragment>
   );
 };
 
