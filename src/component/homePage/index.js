@@ -1,21 +1,19 @@
 import React, { useEffect } from "react";
-import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
-import BoardDetail from "../component/boards/boardDetail";
-import BoardList from "../component/boards/boardList";
-import Navbar from "../component/navbar";
-import Profile from "../component/profile";
-import ChangePassword from "../component/changePassword";
+import { Route, Switch, useHistory } from "react-router-dom";
+import BoardDetail from "../boards/boardDetail";
+import BoardList from "../boards/boardList";
+import ChangePassword from "../changePassword";
+import Navbar from "../navbar";
+import Profile from "../profile";
 
 const HomePage = () => {
   const history = useHistory();
-  const match = useRouteMatch();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) history.push("/login");
   });
 
-  console.log(match.path);
   return (
     <React.Fragment>
       <Navbar />

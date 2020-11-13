@@ -7,17 +7,24 @@ import {
   CssBaseline,
   FormControlLabel,
   Grid,
+  IconButton,
   TextField,
   Typography,
 } from "@material-ui/core";
+import FacebookIcon from "@material-ui/icons/Facebook";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import backgroundImage from "../../assert/img/City_Landscape_Background.jpg";
+import config from "../../config";
 import Copyright from "../icons/copyRights";
 import FacebookCircularProgress from "../icons/progress";
 import signIn from "./services";
 import useStyles from "./styles";
+import GTranslateIcon from "@material-ui/icons/GTranslate";
+
+const URL_SERVER_API = config.API_URL;
 
 const SignInForm = () => {
   // Styles
@@ -34,8 +41,16 @@ const SignInForm = () => {
 
   // Setup
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    const tokenLocal = localStorage.getItem("token");
+    if (tokenLocal) {
+      history.push("/");
+      return;
+    }
+
+    const tokenCookies = Cookies.get("auth");
+    if (tokenCookies) {
+      localStorage.setItem("token", tokenCookies);
+      Cookies.remove("auth");
       history.push("/");
       return;
     }
@@ -109,6 +124,14 @@ const SignInForm = () => {
         alert("Can't connect server!");
       }
     })();
+  };
+
+  const handleLoginWithFB = () => {
+    window.open(`${URL_SERVER_API}/auth/facebook/sign-in`, "_self");
+  };
+
+  const handleLoginWithGG = () => {
+    window.open(`${URL_SERVER_API}/auth/google/sign-in`, "_self");
   };
 
   // Render
@@ -194,6 +217,29 @@ const SignInForm = () => {
               >
                 Sign In
               </Button>
+
+              <IconButton
+                className={classes.socialLoginFB}
+                onClick={handleLoginWithFB}
+              >
+                <FacebookIcon />
+                <span className={classes.titleSocialLogin}>
+                  Sign in with Facebook
+                </span>
+              </IconButton>
+
+              <IconButton
+                className={classes.socialLoginGG}
+                onClick={handleLoginWithGG}
+              >
+                <GTranslateIcon />
+                <span
+                  className={classes.titleSocialLogin}
+                  style={{ color: "black" }}
+                >
+                  Sign in with Google
+                </span>
+              </IconButton>
 
               <Grid container>
                 <Grid item xs>

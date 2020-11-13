@@ -33,6 +33,12 @@ const Profile = () => {
   }, []);
 
   const handleChangeInfo = () => {
+    const confirmChange = window.confirm(
+      `Do you want to change the full name to "${fullName}"`
+    );
+
+    if (!confirmChange) return;
+
     setIsLoaded(false);
     (async () => {
       try {
@@ -42,10 +48,10 @@ const Profile = () => {
 
         if (!success) {
           alert("Change failed");
-          return;
+        } else {
+          alert("Change success");
+          setFullName(userInfo.fullName);
         }
-
-        setFullName(userInfo.fullName);
       } catch (e) {
         alert("Can't connect to server!");
       }
