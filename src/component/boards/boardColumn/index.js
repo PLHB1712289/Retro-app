@@ -76,6 +76,7 @@ const BoardColumn = ({
         const { content, id } = item;
         return (
           <Item
+            key={id}
             id={id}
             color={color}
             content={content}

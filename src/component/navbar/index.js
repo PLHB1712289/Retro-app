@@ -66,7 +66,7 @@ const Navbar = () => {
         className={classes.appBar}
       >
         <Toolbar className={classes.toolbar}>
-          <Typography variant="div" className={classes.toolbarTitle}>
+          <Typography className={classes.toolbarTitle}>
             <Link to="/">
               <Button>
                 <img src={Logo} alt="logo" className={classes.logo} />

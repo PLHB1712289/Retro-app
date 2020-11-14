@@ -21,14 +21,14 @@ const Item = ({ color, content, onChangeState }) => {
       className={classes.item}
       style={{ backgroundColor: `${color}` }}
     >
-      <text
+      <span
         style={{
           wordWrap: "break-word",
           maxWidth: "85%",
         }}
       >
         {content}
-      </text>
+      </span>
 
       <IconButton aria-label="delete" onClick={() => handleEnableEdit()}>
         <CreateIcon />
