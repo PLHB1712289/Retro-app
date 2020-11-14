@@ -6,6 +6,19 @@ import BoardColumn from "../boardColumn";
 import services from "./services";
 import useStyles from "./styles";
 
+import io from "socket.io-client";
+let socket;
+
+const TAG_SOCKET_IO = {
+  JOIN_ROOM: "join_room",
+  REQUEST_CREATE: "request_create",
+  REQUEST_REMOVE: "request_remove",
+  REQUEST_EDIT: "request_edit",
+  RESPONSE_CREATE: "response_create",
+  RESPONSE_REMOVE: "response_remove",
+  RESPONSE_EDIT: "response_edit",
+};
+
 const category = {
   wentWell: {
     title: "went well",
@@ -39,9 +52,85 @@ const BoardDetail = () => {
   const [actionItems, setActionItems] = useState([]);
   const [title, setTitle] = useState("");
 
-  // Setup
-  useEffect(() => {
+  const fetch = () => {
+    socket = io("http://localhost:3000");
+    // Request connect room
+    socket.emit(TAG_SOCKET_IO.JOIN_ROOM, idBoard);
+
+    // Setup event Receive data from server
+    socket.on(TAG_SOCKET_IO.RESPONSE_CREATE, ({ id, tag, content }) => {
+      console.log("Response create");
+      switch (tag) {
+        case category.wentWell.tag:
+          setWentWell([...wentWell].push({ id, content }));
+          break;
+
+        case category.toImprove.tag:
+          setToImprove([...toImprove].push({ id, content }));
+          break;
+
+        case category.actionItems.tag:
+          setActionItems([...actionItems].push({ id, content }));
+          break;
+
+        default:
+          break;
+      }
+    });
+    socket.on(TAG_SOCKET_IO.RESPONSE_REMOVE, ({ id, tag }) => {
+      console.log("Response remove");
+      switch (tag) {
+        case category.wentWell.tag:
+          setWentWell(wentWell.filter((item) => item.id !== id));
+          break;
+
+        case category.toImprove.tag:
+          setToImprove(toImprove.filter((item) => item.id !== id));
+          break;
+
+        case category.actionItems.tag:
+          setActionItems(actionItems.filter((item) => item.id !== id));
+          break;
+
+        default:
+          break;
+      }
+    });
+    socket.on(TAG_SOCKET_IO.RESPONSE_EDIT, ({ id, tag, content }) => {
+      console.log("Response edit");
+      switch (tag) {
+        case category.wentWell.tag:
+          setWentWell(
+            wentWell.map((item) =>
+              item.id === id ? { ...item, content } : item
+            )
+          );
+          break;
+
+        case category.toImprove.tag:
+          setToImprove(
+            toImprove.map((item) =>
+              item.id === id ? { ...item, content } : item
+            )
+          );
+          break;
+
+        case category.actionItems.tag:
+          setActionItems(
+            actionItems.map((item) =>
+              item.id === id ? { ...item, content } : item
+            )
+          );
+          break;
+
+        default:
+          break;
+      }
+    });
+
+    // Fetch data
     (async () => {
+      console.log("Getdata");
       try {
         const result = await services.getAllItems(idBoard);
 
@@ -68,9 +157,44 @@ const BoardDetail = () => {
         alert("Can't connect to server!");
       }
     })();
-  }, [history, idBoard]);
+
+    return () => socket.disconnect();
+  };
+  // Setup
+
+  // eslint-disable-next-line
+  useEffect(fetch, []);
+
+  // useEffect(() => {
+  // Fetch data
+  // (async () => {
+  //   try {
+  //     const result = await services.getAllItems(idBoard);
+  //     const {
+  //       title,
+  //       listItemsWentWell,
+  //       listItemsToImprove,
+  //       listItemsActionItems,
+  //     } = result;
+  //     if (!title) {
+  //       alert(result);
+  //       history.push("/");
+  //       return;
+  //     }
+  //     setIsLoaded(true);
+  //     setTitle(title);
+  //     setToImprove(listItemsToImprove);
+  //     setActionItems(listItemsActionItems);
+  //     setWentWell(listItemsWentWell);
+  //   } catch (e) {
+  // setIsLoaded(true);
+  //     alert("Can't connect to server!");
+  //   }
+  // })();
+  // });
 
   const handleCreateNewItem = (tag, item) => {
+    // Send request server
     setIsLoaded(false);
     (async () => {
       try {
@@ -80,29 +204,12 @@ const BoardDetail = () => {
         });
 
         if (success) {
-          switch (tag) {
-            case category.wentWell.tag: {
-              const newLists = [...wentWell];
-              newLists.push({ content: newItem.content, id: newItem._id });
-              setWentWell(newLists);
-              break;
-            }
-
-            case category.toImprove.tag: {
-              const newLists = [...toImprove];
-              newLists.push({ content: newItem.content, id: newItem._id });
-              setToImprove(newLists);
-              break;
-            }
-            case category.actionItems.tag: {
-              const newLists = [...actionItems];
-              newLists.push({ content: newItem.content, id: newItem._id });
-              setActionItems(newLists);
-              break;
-            }
-            default:
-              break;
-          }
+          socket.emit(TAG_SOCKET_IO.REQUEST_CREATE, {
+            tag,
+            content: item,
+            id: newItem._id,
+            idBoard,
+          });
         } else {
           alert("Add new item failed!");
         }
@@ -125,32 +232,7 @@ const BoardDetail = () => {
         });
 
         if (success) {
-          switch (tag) {
-            case category.wentWell.tag: {
-              const newLists = wentWell.filter((ele) => {
-                return ele.id !== id;
-              });
-              setWentWell(newLists);
-              break;
-            }
-
-            case category.toImprove.tag: {
-              const newLists = toImprove.filter((ele) => {
-                return ele.id !== id;
-              });
-              setToImprove(newLists);
-              break;
-            }
-            case category.actionItems.tag: {
-              const newLists = actionItems.filter((ele) => {
-                return ele.id !== id;
-              });
-              setActionItems(newLists);
-              break;
-            }
-            default:
-              break;
-          }
+          socket.emit(TAG_SOCKET_IO.REQUEST_REMOVE, { tag, id, idBoard });
         } else {
           alert("Remove item failed!");
         }
@@ -175,31 +257,12 @@ const BoardDetail = () => {
       });
 
       if (success) {
-        switch (tag) {
-          case category.wentWell.tag: {
-            const newWentWellList = wentWell.map((item) => {
-              return item.id === id ? { ...item, content: newContent } : item;
-            });
-            setWentWell(newWentWellList);
-            break;
-          }
-          case category.toImprove.tag: {
-            const newToImprove = toImprove.map((item) => {
-              return item.id === id ? { ...item, content: newContent } : item;
-            });
-            setToImprove(newToImprove);
-            break;
-          }
-          case category.actionItems.tag: {
-            const newActionItems = actionItems.map((item) => {
-              return item.id === id ? { ...item, content: newContent } : item;
-            });
-            setActionItems(newActionItems);
-            break;
-          }
-          default:
-            break;
-        }
+        socket.emit(TAG_SOCKET_IO.REQUEST_EDIT, {
+          id,
+          tag,
+          content: newContent,
+          idBoard,
+        });
       }
 
       setIsLoaded(true);
