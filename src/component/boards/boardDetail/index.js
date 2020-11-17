@@ -6,9 +6,12 @@ import io from "socket.io-client";
 import FacebookCircularProgress from "../../icons/progress";
 import BoardColumn from "../boardColumn";
 import Item from "../item";
-import { CATEGORY, TAG_SOCKET_IO } from "./data";
+import DATA from "./data";
 import services from "./services";
 import useStyles from "./styles";
+
+const CATEGORY = DATA.CATEGORY;
+const TAG_SOCKET_IO = DATA.TAG_SOCKET_IO;
 
 const BoardDetail = () => {
   // Styles
@@ -355,7 +358,7 @@ const BoardDetail = () => {
       newSocket.emit("leave_room", { idBoard });
       newSocket.disconnect();
     };
-  }, []);
+  }, [idBoard]);
 
   // eslint-disable-next-line
   useEffect(() => {
@@ -387,7 +390,7 @@ const BoardDetail = () => {
         alert("Can't connect to server!");
       }
     })();
-  }, []);
+  }, [idBoard, history]);
 
   const getItems = (tag) => {
     switch (tag) {

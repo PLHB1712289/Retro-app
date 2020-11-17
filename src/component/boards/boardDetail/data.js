@@ -34,4 +34,4 @@ const CATEGORY = {
 
 const DATA = { CATEGORY: { ...CATEGORY }, TAG_SOCKET_IO: { ...TAG_SOCKET_IO } };
 
-module.exports = DATA;
+export default DATA;
