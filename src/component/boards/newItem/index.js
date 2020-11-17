@@ -10,13 +10,24 @@ const NewItem = ({ color, onClickCheck, onClickCancel }) => {
 
   const handleChangeContent = (e) => {
     const { value } = e.target;
-
     setContent(value);
   };
 
   const handleAddItem = () => {
     onClickCheck(content);
     setContent("");
+    onClickCancel();
+  };
+
+  const handleClickCancel = () => {
+    if (content) {
+      const confirmCancel = window.confirm(
+        "Do you want to stop adding new item?"
+      );
+
+      if (!confirmCancel) return;
+    }
+
     onClickCancel();
   };
 
@@ -41,7 +52,7 @@ const NewItem = ({ color, onClickCheck, onClickCancel }) => {
               color: "red",
             }}
             className={classes.button}
-            onClick={() => onClickCancel()}
+            onClick={() => handleClickCancel()}
           >
             <ClearSharpIcon />
           </IconButton>

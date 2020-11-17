@@ -13,6 +13,9 @@ const services = {
   removeItem: (idBoard, id) => {
     return api.POST_removeItem(idBoard, id);
   },
+  dragDropItem: (idBoard, id, newTag) => {
+    return api.POST_dragDropItem(idBoard, id, newTag);
+  },
 };
 
 export default services;

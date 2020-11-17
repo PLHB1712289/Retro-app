@@ -17,17 +17,22 @@ const GET_allItems = async (boardID) => {
     };
 
     for (let i = 0; i < listItems.length; i++) {
-      const { content, _id: id } = listItems[i];
+      const { content, _id: id, tag } = listItems[i];
 
       switch (listItems[i].tag) {
         case 1:
-          response.listItemsWentWell.push({ content, id });
+          response.listItemsWentWell.push({ content, id, tag, focus: false });
           break;
         case 2:
-          response.listItemsToImprove.push({ content, id });
+          response.listItemsToImprove.push({ content, id, tag, focus: false });
           break;
         case 3:
-          response.listItemsActionItems.push({ content, id });
+          response.listItemsActionItems.push({
+            content,
+            id,
+            tag,
+            focus: false,
+          });
           break;
         default:
           break;
@@ -55,6 +60,11 @@ const POST_removeItem = (idBoard, id) => {
   return axiosClient.post(url, id);
 };
 
+const POST_dragDropItem = (idBoard, id, newTag) => {
+  const url = `/board/${idBoard}/dnd-item`;
+  return axiosClient.post(url, { id, newTag });
+};
+
 // =======================================================================
 // register
 const register = {
@@ -62,6 +72,7 @@ const register = {
   POST_addItem,
   POST_changeItem,
   POST_removeItem,
+  POST_dragDropItem,
 };
 
 export default register;

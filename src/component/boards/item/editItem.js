@@ -10,12 +10,14 @@ import STATE_ITEM from "./data";
 
 const EditItem = ({
   color,
-  id,
-  content,
+  item,
   onChangeState,
   onRemove,
   onChange,
+  onCancelFocus,
 }) => {
+  const { id, content, tag } = item;
+
   // Styles
   const classes = useStyles();
 
@@ -24,10 +26,17 @@ const EditItem = ({
 
   // Setup
   const handleDisableEdit = () => {
+    if (contentInput === content) {
+      onChangeState(STATE_ITEM.VIEW);
+      onCancelFocus(id, tag);
+      return;
+    }
+
     const confirmDisbleEdit = window.confirm("Do you want to stop editing?");
 
     if (confirmDisbleEdit) {
       onChangeState(STATE_ITEM.VIEW);
+      onCancelFocus(id, tag);
     }
   };
 
@@ -37,8 +46,9 @@ const EditItem = ({
   };
 
   const handleRemoveItem = () => {
-    onRemove(id, content);
+    onRemove(tag, id, content);
     onChangeState(STATE_ITEM.VIEW);
+    onCancelFocus(id, tag);
   };
 
   const handleChangeItem = () => {
@@ -47,8 +57,9 @@ const EditItem = ({
       return;
     }
 
-    onChange(id, contentInput);
+    onChange(tag, id, contentInput);
     onChangeState(STATE_ITEM.VIEW);
+    onCancelFocus(id, tag);
   };
 
   // Render

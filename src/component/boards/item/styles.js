@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 export default makeStyles({
   item: {
-    border: "2px solid rgba(0,0,0,0.3)",
+    border: "1px solid rgba(0,0,0,0.3)",
     borderRadius: 5,
     marginTop: 5,
     padding: 10,

@@ -2,37 +2,43 @@ import { Grid } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import React, { useState } from "react";
-import Item from "../item";
 import NewItem from "../newItem";
 import useStyles from "./styles";
 
-const BoardColumn = ({
-  category,
-  data,
-  onClickNewItem,
-  onClickRemoveItem,
-  onClickChangeItem,
-}) => {
+import { useDrop } from "react-dnd";
+
+const BoardColumn = ({ category, onClickNewItem, children }) => {
   // Styles
   const classes = useStyles();
 
   //
-  const { color, title, tag } = category;
+  const { COLOR: color, TITLE: title, TAG: tag } = category;
 
   // States
   const [isAddItem, setIsAddItem] = useState(false);
 
+  const [{ isOver, canDrop }, drop] = useDrop({
+    accept: "Hello",
+    drop: () => ({ tag: tag }),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
+    canDrop: (item) => {
+      // console.log("candrop receive item:", item);
+      return true;
+    },
+  });
+
+  const getBackgroundColor = () => {
+    if (isOver && canDrop) {
+      return "rgba(33,150,243,0.2)";
+    }
+  };
+
   // Setup
   const handleCreateNewItem = (item) => {
     onClickNewItem(tag, item);
-  };
-
-  const handleChangeItem = (id, content) => {
-    onClickChangeItem(tag, id, content);
-  };
-
-  const handleRemoveItem = (id, content) => {
-    onClickRemoveItem(tag, id, content);
   };
 
   const handleClickCreateNewItem = () => {
@@ -44,7 +50,15 @@ const BoardColumn = ({
   };
 
   return (
-    <Grid item md={4} xs={12} spacing={3} className={classes.column}>
+    <Grid
+      item
+      md={4}
+      xs={12}
+      spacing={3}
+      className={classes.column}
+      style={{ backgroundColor: getBackgroundColor() }}
+      ref={drop}
+    >
       <Grid item xs={12} className={classes.lable}>
         <div className={classes.tag}>
           <div className={classes.containerTitle}>
@@ -71,20 +85,7 @@ const BoardColumn = ({
       ) : (
         <></>
       )}
-
-      {data.map((item) => {
-        const { content, id } = item;
-        return (
-          <Item
-            key={id}
-            id={id}
-            color={color}
-            content={content}
-            onRemove={handleRemoveItem}
-            onChange={handleChangeItem}
-          />
-        );
-      })}
+      {children}
     </Grid>
   );
 };
