@@ -1,4 +1,6 @@
 import React from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -8,8 +10,6 @@ import {
 import HomePage from "./component/homePage";
 import SignIn from "./component/signIn";
 import SignUp from "./component/signUp";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import config from "./config";
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
             <HomePage />
           </Route>
           <Route>
-            <div>Not found</div>
+            <Redirect to={config.PUBLIC_URL + "/"} />
           </Route>
         </Switch>
       </Router>

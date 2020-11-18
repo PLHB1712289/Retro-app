@@ -13,6 +13,7 @@ import { Link, useHistory } from "react-router-dom";
 import Logo from "../../assert/img/logo.png";
 import useStyles from "./styles";
 import SettingsIcon from "@material-ui/icons/Settings";
+import config from "../../config";
 
 const ITEM_HEIGHT = 48;
 
@@ -38,21 +39,21 @@ const Navbar = () => {
   const onClickSignOut = () => {
     localStorage.removeItem("token");
     handleClickCloseMenu();
-    history.push("/login");
+    history.push(`${config.PUBLIC_URL}/login`);
   };
 
   const onClickProfile = () => {
     handleClickCloseMenu();
-    history.push("/profile");
+    history.push(`${config.PUBLIC_URL}/profile`);
   };
 
   const onClickChangePassword = () => {
     handleClickCloseMenu();
-    history.push("/change-password");
+    history.push(`${config.PUBLIC_URL}/change-password`);
   };
 
   const onClickHome = () => {
-    history.push("/");
+    history.push(`${config.PUBLIC_URL}/`);
   };
 
   const open = Boolean(anchorEl);
@@ -67,7 +68,7 @@ const Navbar = () => {
       >
         <Toolbar className={classes.toolbar}>
           <Typography className={classes.toolbarTitle}>
-            <Link to="/">
+            <Link to={config.PUBLIC_URL + "/"}>
               <Button>
                 <img src={Logo} alt="logo" className={classes.logo} />
               </Button>

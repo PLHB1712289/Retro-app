@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import MyBoard from "./myBoard";
 import boardServices from "./service";
 import ShareBoard from "./shareBoard";
+import config from "../../../config";
 
 const BoardList = () => {
   // History
@@ -42,7 +43,7 @@ const BoardList = () => {
         if (!token) return;
 
         localStorage.removeItem("token");
-        history.push("/login");
+        history.push(`${config.PUBLIC_URL}/login`);
       }
     })();
   }, [history]);

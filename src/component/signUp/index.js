@@ -15,6 +15,7 @@ import Copyright from "../icons/copyRights";
 import FacebookCircularProgress from "../icons/progress";
 import signUp from "./services";
 import useStyles from "./styles";
+import config from "../../config";
 
 const SignUpForm = () => {
   // Styles
@@ -55,7 +56,7 @@ const SignUpForm = () => {
               `${message}. Do you want to redirect signin?`
             );
             if (redirectSignIn) {
-              history.push("/login");
+              history.push(`${config.PUBLIC_URL}/login`);
             }
           } else {
             alert(message);

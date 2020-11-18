@@ -9,6 +9,7 @@ import Item from "../item";
 import DATA from "./data";
 import services from "./services";
 import useStyles from "./styles";
+import config from "../../../config";
 
 const CATEGORY = DATA.CATEGORY;
 const TAG_SOCKET_IO = DATA.TAG_SOCKET_IO;
@@ -376,7 +377,7 @@ const BoardDetail = () => {
 
         if (!title) {
           alert(result);
-          history.push("/");
+          history.push(`${config.PUBLIC_URL}/`);
           return;
         }
 

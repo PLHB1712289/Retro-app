@@ -16,6 +16,7 @@ import { useHistory } from "react-router-dom";
 import DialogEditBoard from "../../dialogs/dialogEditBoard";
 import DialogShareBoard from "../../dialogs/dialogShareBoard";
 import useStyles from "./styles";
+import config from "../../../config";
 
 const ITEM_HEIGHT = 48;
 
@@ -93,7 +94,7 @@ const BoardCard = ({
   };
 
   const handleClickCard = () => {
-    history.push(`/board/${id}`);
+    history.push(`${config.PUBLIC_URL}/board/${id}`);
   };
 
   const handleChangeBoardCard = (title) => {

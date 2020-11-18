@@ -43,7 +43,7 @@ const SignInForm = () => {
   useEffect(() => {
     const tokenLocal = localStorage.getItem("token");
     if (tokenLocal) {
-      history.push("/");
+      history.push(`${config.PUBLIC_URL}/`);
       return;
     }
 
@@ -51,7 +51,7 @@ const SignInForm = () => {
     if (tokenCookies) {
       localStorage.setItem("token", tokenCookies);
       Cookies.remove("auth");
-      history.push("/");
+      history.push(`${config.PUBLIC_URL}/`);
       return;
     }
 
@@ -118,7 +118,7 @@ const SignInForm = () => {
 
         setIsLoad(false);
         localStorage.setItem("token", token);
-        history.push("/");
+        history.push(`${config.PUBLIC_URL}/`);
       } catch (e) {
         setIsLoad(false);
         alert("Can't connect server!");

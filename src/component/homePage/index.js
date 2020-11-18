@@ -7,12 +7,14 @@ import Navbar from "../navbar";
 import Profile from "../profile";
 import config from "../../config";
 
+console.log(config);
+
 const HomePage = () => {
   const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (!token) history.push("/login");
+    if (!token) history.push(`${config.PUBLIC_URL}/login`);
   });
 
   return (
