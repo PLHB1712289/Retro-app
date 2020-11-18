@@ -5,6 +5,7 @@ import BoardList from "../boards/boardList";
 import ChangePassword from "../changePassword";
 import Navbar from "../navbar";
 import Profile from "../profile";
+import config from "../../config";
 
 const HomePage = () => {
   const history = useHistory();
@@ -19,19 +20,19 @@ const HomePage = () => {
       <Navbar />
 
       <Switch>
-        <Route path="/profile">
+        <Route path={config.PUBLIC_URL + "/profile"}>
           <Profile />
         </Route>
 
-        <Route path="/change-password">
+        <Route path={config.PUBLIC_URL + "/change-password"}>
           <ChangePassword />
         </Route>
 
-        <Route path="/board/:idBoard">
+        <Route path={config.PUBLIC_URL + "/board/:idBoard"}>
           <BoardDetail />
         </Route>
 
-        <Route path="/" exact>
+        <Route path={config.PUBLIC_URL + "/"}>
           <BoardList />
         </Route>
 
