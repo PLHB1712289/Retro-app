@@ -2,7 +2,7 @@ import React from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Redirect,
   Route,
   Switch,
@@ -15,7 +15,7 @@ import config from "./config";
 function App() {
   return (
     <DndProvider backend={HTML5Backend}>
-      <Router>
+      <Router basename={"retro-app"}>
         <Switch>
           <Route path={config.PUBLIC_URL + "/login"}>
             <SignIn />
