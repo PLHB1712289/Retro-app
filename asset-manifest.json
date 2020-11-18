@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/retro-app/static/js/main.b4d5afc0.chunk.js",
-    "main.js.map": "/retro-app/static/js/main.b4d5afc0.chunk.js.map",
+    "main.js": "/retro-app/static/js/main.122a08c7.chunk.js",
+    "main.js.map": "/retro-app/static/js/main.122a08c7.chunk.js.map",
     "runtime-main.js": "/retro-app/static/js/runtime-main.9f2e1e39.js",
     "runtime-main.js.map": "/retro-app/static/js/runtime-main.9f2e1e39.js.map",
-    "static/js/2.14aae81f.chunk.js": "/retro-app/static/js/2.14aae81f.chunk.js",
-    "static/js/2.14aae81f.chunk.js.map": "/retro-app/static/js/2.14aae81f.chunk.js.map",
+    "static/js/2.64d2feed.chunk.js": "/retro-app/static/js/2.64d2feed.chunk.js",
+    "static/js/2.64d2feed.chunk.js.map": "/retro-app/static/js/2.64d2feed.chunk.js.map",
     "index.html": "/retro-app/index.html",
-    "static/js/2.14aae81f.chunk.js.LICENSE.txt": "/retro-app/static/js/2.14aae81f.chunk.js.LICENSE.txt",
+    "static/js/2.64d2feed.chunk.js.LICENSE.txt": "/retro-app/static/js/2.64d2feed.chunk.js.LICENSE.txt",
     "static/media/City_Landscape_Background.9c6bc3bc.jpg": "/retro-app/static/media/City_Landscape_Background.9c6bc3bc.jpg",
     "static/media/plus.5527a63d.png": "/retro-app/static/media/plus.5527a63d.png"
   },
   "entrypoints": [
     "static/js/runtime-main.9f2e1e39.js",
-    "static/js/2.14aae81f.chunk.js",
-    "static/js/main.b4d5afc0.chunk.js"
+    "static/js/2.64d2feed.chunk.js",
+    "static/js/main.122a08c7.chunk.js"
   ]
 }
