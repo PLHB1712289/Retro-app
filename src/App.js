@@ -24,8 +24,8 @@ function App() {
             <SignUp />
           </Route>
           <Route path={config.PUBLIC_URL + "/"}>
-            {/* <HomePage /> */}
-            <div>This is homepage</div>
+            <HomePage />
+            {/* <div>This is homepage</div> */}
           </Route>
           <Route>
             <Redirect to={config.PUBLIC_URL + "/"} />
