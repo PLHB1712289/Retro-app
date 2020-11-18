@@ -17,9 +17,6 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <Router>
         <Switch>
-          <Route path={config.PUBLIC_URL} exact>
-            <Redirect to="/" />
-          </Route>
           <Route path={config.PUBLIC_URL + "/login"}>
             <SignIn />
           </Route>
