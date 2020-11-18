@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import HomePage from "./component/homePage";
 import SignIn from "./component/signIn";
 import SignUp from "./component/signUp";
@@ -11,6 +16,9 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <Router>
         <Switch>
+          <Route path="/retro-app" exact>
+            <Redirect to="/" />
+          </Route>
           <Route path="/login">
             <SignIn />
           </Route>
